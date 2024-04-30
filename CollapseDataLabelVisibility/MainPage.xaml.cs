@@ -16,10 +16,9 @@ namespace CollapseDataLabelVisibility
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (!(value is double))
+            if (!(value is double labelValue))
                 return null;
 
-            var labelValue = (double)value;
             if (labelValue < 50)
                 return false;
             return true;

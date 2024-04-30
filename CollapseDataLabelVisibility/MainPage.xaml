@@ -15,9 +15,9 @@
             <model:VisibilityConverter x:Key="visibilityConverter"/>
             <DataTemplate x:Key="labelTemplate">
                 <HorizontalStackLayout HorizontalOptions="Center" IsVisible="{Binding Item.Value, Converter={StaticResource visibilityConverter}}">
+                    <Image Source="greenarrow.png" HeightRequest="15" WidthRequest="15" />
                     <Label Text="{Binding Item.Value}" VerticalOptions="Center"/>
                     <Label Text="%" VerticalOptions="Center"/>
-                    <Image Source="greenarrow.png" HeightRequest="15" WidthRequest="15" />
                 </HorizontalStackLayout>
             </DataTemplate>
         </chart:SfCartesianChart.Resources>
