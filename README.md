@@ -8,13 +8,13 @@ This article will explain the step to hide or collapse specific data labels in a
 
 **[XAML]**
 ```
-<DataTemplate x:Key="labelTemplate">
-    <HorizontalStackLayout HorizontalOptions="Center">
-         <Label Text="{Binding Item.Value}" VerticalOptions="Center"/>
-         <Label Text="%" VerticalOptions="Center"/>
-         <Image Source="greenarrow.png" HeightRequest="15" WidthRequest="15" />
-    </HorizontalStackLayout>
-</DataTemplate>
+            <DataTemplate x:Key="labelTemplate">
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Image Source="greenarrow.png" HeightRequest="15" WidthRequest="15" />
+                    <Label Text="{Binding Item.Value}" VerticalOptions="Center"/>
+                    <Label Text="%" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </DataTemplate>
 ```
 **Step 2:** Create a value to visibility converter to control the visibility of the data label based on the Y-value. For example, in the following converter, we have collapsed the visibility of the data label for values less than 50.
 
@@ -24,10 +24,9 @@ This article will explain the step to hide or collapse specific data labels in a
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (!(value is double))
+            if (!(value is double labelValue))
                 return null;
 
-            var labelValue = (double)value;
             if (labelValue < 50)
                 return false;
             return true;
@@ -46,15 +45,12 @@ This article will explain the step to hide or collapse specific data labels in a
         <chart:SfCartesianChart.Resources>
             <model:VisibilityConverter x:Key="visibilityConverter"/>
             <DataTemplate x:Key="labelTemplate">
-                <VerticalStackLayout IsVisible="{Binding Item.Value, Converter={StaticResource visibilityConverter}}" Spacing="5" WidthRequest="100">
-                    <HorizontalStackLayout HorizontalOptions="Center" IsVisible="{Binding Item.Value}">
-                        <Label Text="{Binding Item.Value}" VerticalOptions="Center"/>
-                        <Label Text="%" VerticalOptions="Center"/>
-                        <Image Source="greenarrow.png" HeightRequest="15" WidthRequest="15" />
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center" IsVisible="{Binding Item.Value, Converter={StaticResource visibilityConverter}}">
+                    <Image Source="greenarrow.png" HeightRequest="15" WidthRequest="15" />
+                    <Label Text="{Binding Item.Value}" VerticalOptions="Center"/>
+                    <Label Text="%" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
             </DataTemplate>
-
         </chart:SfCartesianChart.Resources>
 ```
 **Step 4:** Set the defined DataTemplate to the [LabelTemplate](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartSeries.html#Syncfusion_Maui_Charts_ChartSeries_LabelTemplate) property of [ColumnSeries](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ColumnSeries.html).
@@ -64,7 +60,7 @@ This article will explain the step to hide or collapse specific data labels in a
 <chart:SfCartesianChart x:Name="Chart">
 . . .
     <chart:SfCartesianChart.Series>
-        <chart:ColumnSeries ItemsSource="{Binding ElectricityProductionData}" 
+        <chart:ColumnSeries ItemsSource="{Binding Data}" 
                             LabelTemplate="{StaticResource labelTemplate}"
                             ShowDataLabels="True"
                             XBindingPath="Year" 
@@ -78,4 +74,4 @@ This article will explain the step to hide or collapse specific data labels in a
 </chart:SfCartesianChart>
 ```
 **Output**
- ![collapse_the_visibility_of_specific_data_label.png](https://support.syncfusion.com/kb/agent/attachment/article/15889/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxODEzIiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.K6J1qSq6NfGaIUqf9C-P6RbvLE-nRspU5QqfWg49jSc)
+ ![collapse_the_visibility_of_specific_data_label.png](https://support.syncfusion.com/kb/agent/attachment/article/15889/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyMTg5Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.cBwXqvUHvRWwf42SCvO5NwWNU1mr5LcsR4kVAR375v8)
