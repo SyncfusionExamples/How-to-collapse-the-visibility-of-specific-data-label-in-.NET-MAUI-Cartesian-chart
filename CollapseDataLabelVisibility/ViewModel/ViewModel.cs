@@ -24,8 +24,8 @@ namespace CollapseDataLabelVisibility
 
             ElectricityProductionData = new ObservableCollection<ChartDataModel>()
             {
-               new ChartDataModel("2005",76),
-               new ChartDataModel("2004",45),
+               new ChartDataModel("2004",76),
+               new ChartDataModel("2005",45),
                new ChartDataModel("2006",55),
                new ChartDataModel("2007",30),
                new ChartDataModel("2008",60),

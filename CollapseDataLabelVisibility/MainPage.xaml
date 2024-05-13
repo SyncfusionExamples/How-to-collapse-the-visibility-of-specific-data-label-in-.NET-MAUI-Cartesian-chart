@@ -23,7 +23,7 @@
         </chart:SfCartesianChart.Resources>
 
         <chart:SfCartesianChart.Title>
-            <Label Text="Electricity Production from Various Sources (% of total)" MaxLines="2" LineBreakMode="WordWrap" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+            <Label Text="Sales of the product (% of total)" MaxLines="2" LineBreakMode="WordWrap" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
         </chart:SfCartesianChart.Title>
 
 
@@ -40,7 +40,7 @@
         </chart:SfCartesianChart.YAxes>
 
         <chart:SfCartesianChart.Series>
-            <chart:ColumnSeries ItemsSource="{Binding ElectricityProductionData}" 
+            <chart:ColumnSeries ItemsSource="{Binding Data}" 
                                 LabelTemplate="{StaticResource labelTemplate}"
                                 Fill="#F7CB05"
                                 ShowDataLabels="True"
